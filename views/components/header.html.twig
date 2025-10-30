@@ -1,0 +1,108 @@
+<header class="border-b border-gray-200 bg-white sticky top-0 z-50 shadow-sm">
+    <!-- 1440px Container -->
+    <nav class="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-16">
+            <!-- Logo -->
+            <a href="/" class="flex items-center gap-3 font-bold text-2xl text-gray-900 hover:opacity-80 transition-opacity focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded-lg px-2 py-1">
+                <div class="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
+                    <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                    </svg>
+                </div>
+                <span class="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                    Clear Desk
+                </span>
+            </a>
+
+            <!-- Navigation Links -->
+            <div class="flex items-center gap-8">
+                <!-- Show these when NOT authenticated -->
+                {% if not session.user %}
+                    <a href="/login" class="text-base font-medium text-gray-600 hover:text-gray-900 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded-lg px-3 py-2 {% if current_path == '/login' %}text-blue-600 font-semibold{% endif %}">
+                        Sign In
+                    </a>
+                    <a href="/signup" class="text-base font-medium bg-blue-600 text-white hover:bg-blue-700 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded-lg px-4 py-2">
+                        Get Started
+                    </a>
+                {% else %}
+                    <!-- Show these when authenticated -->
+                    <a href="/dashboard" class="text-base font-medium text-gray-600 hover:text-gray-900 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded-lg px-3 py-2 {% if current_path == '/dashboard' %}text-blue-600 font-semibold{% endif %}">
+                        Dashboard
+                    </a>
+                    <a href="/tickets" class="text-base font-medium text-gray-600 hover:text-gray-900 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded-lg px-3 py-2 {% if current_path == '/tickets' %}text-blue-600 font-semibold{% endif %}">
+                        Tickets
+                    </a>
+                    
+                    <!-- User Menu -->
+                    <div class="flex items-center gap-4 pl-4 border-l border-gray-200">
+                        <span class="text-sm text-gray-600 hidden sm:block">
+                            Welcome, {{ session.user.name ?? 'User' }}
+                        </span>
+                        <a href="/logout" class="text-base font-medium text-red-600 hover:text-red-700 transition-colors focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 rounded-lg px-3 py-2 border border-red-200 hover:bg-red-50">
+                            Logout
+                        </a>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu (Optional enhancement) -->
+    <div id="mobileMenu" class="lg:hidden bg-white border-t border-gray-200 px-4 py-4 hidden">
+        <div class="space-y-3">
+            {% if not session.user %}
+                <a href="/login" class="block text-base font-medium text-gray-600 hover:text-gray-900 transition-colors py-2 text-center" onclick="closeMobileMenu()">
+                    Sign In
+                </a>
+                <a href="/signup" class="block text-base font-medium bg-blue-600 text-white hover:bg-blue-700 transition-colors rounded-lg px-4 py-2 text-center" onclick="closeMobileMenu()">
+                    Get Started
+                </a>
+            {% else %}
+                <a href="/dashboard" class="block text-base font-medium text-gray-600 hover:text-gray-900 transition-colors py-2 text-center {% if current_path == '/dashboard' %}text-blue-600 font-semibold{% endif %}" onclick="closeMobileMenu()">
+                    Dashboard
+                </a>
+                <a href="/tickets" class="block text-base font-medium text-gray-600 hover:text-gray-900 transition-colors py-2 text-center {% if current_path == '/tickets' %}text-blue-600 font-semibold{% endif %}" onclick="closeMobileMenu()">
+                    Tickets
+                </a>
+                <div class="pt-4 border-t border-gray-200">
+                    <p class="text-sm text-gray-600 text-center mb-2">Welcome, {{ session.user.name ?? 'User' }}</p>
+                    <a href="/logout" class="block text-base font-medium text-red-600 hover:text-red-700 transition-colors text-center py-2" onclick="closeMobileMenu()">
+                        Logout
+                    </a>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- Mobile Menu Toggle Button -->
+    <button id="mobileMenuToggle" class="lg:hidden absolute right-4 top-4 p-2 rounded-lg hover:bg-gray-100 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500">
+        <svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+    </button>
+</header>
+
+<script>
+// Mobile menu functionality
+const mobileMenu = document.getElementById('mobileMenu');
+const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+
+function toggleMobileMenu() {
+    mobileMenu.classList.toggle('hidden');
+}
+
+function closeMobileMenu() {
+    mobileMenu.classList.add('hidden');
+}
+
+if (mobileMenuToggle) {
+    mobileMenuToggle.addEventListener('click', toggleMobileMenu);
+}
+
+// Close mobile menu when clicking outside
+document.addEventListener('click', (event) => {
+    if (!event.target.closest('#mobileMenu') && !event.target.closest('#mobileMenuToggle')) {
+        closeMobileMenu();
+    }
+});
+</script>

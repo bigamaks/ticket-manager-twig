@@ -1,0 +1,73 @@
+{% extends 'layouts/base.html.twig' %}
+
+{% block header %}
+	{% include 'components/header.html.twig' %}
+{% endblock %}
+
+{% block content %}
+	<div
+		class="min-h-screen flex flex-col">
+		<!-- Hero Section -->
+		<section
+			class="relative py-20 px-4 sm:px-6 lg:px-8 overflow-hidden wave-bg">
+			<!-- Wave SVG -->
+			<svg class="absolute bottom-0 left-0 w-full" viewbox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+				<path d="M0 60L60 52C120 44 240 28 360 28C480 28 600 44 720 44C840 44 960 28 1080 28C1200 28 1320 44 1380 52L1440 60V120H1380C1320 120 1200 120 1080 120C960 120 840 120 720 120C600 120 480 120 360 120C240 120 120 120 60 120H0V60Z" fill="white"/>
+			</svg>
+
+			<!-- Decorative Circles -->
+			<div class="absolute top-10 right-10 w-64 h-64 bg-blue-300 rounded-full opacity-20"></div>
+			<div class="absolute bottom-20 left-10 w-48 h-48 bg-purple-300 rounded-full opacity-20"></div>
+
+			<div class="max-w-[1440px] mx-auto relative z-10">
+				<div class="text-center mb-12 text-white">
+					<h1 class="text-5xl md:text-6xl font-bold mb-6">
+						Manage Your Tickets with Ease
+					</h1>
+					<p class="text-xl opacity-90 mb-8 max-w-2xl mx-auto">
+						   A simple and powerful solution to create, track, and resolve tickets efficiently.
+					</p>
+					<div class="flex gap-4 justify-center flex-wrap">
+						<a href="/signup" class="bg-white text-blue-600 hover:bg-gray-100 px-8 py-4 text-lg font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
+							Get Started
+						</a>
+						<a href="/login" class="border border-white text-white hover:bg-white/10 px-8 py-4 text-lg font-semibold rounded-xl backdrop-blur-sm transition-all duration-300">
+							Sign In
+						</a>
+					</div>
+				</div>
+
+				<!-- Feature Cards -->
+				<div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16">
+					<div class="bg-white rounded-lg shadow-lg p-6">
+						<div class="text-blue-600 text-2xl mb-4">🎫</div>
+						<h3 class="text-lg font-semibold text-gray-900 mb-2">Easy Tracking</h3>
+						<p class="text-gray-600">
+							Track all your tickets in one place with real-time updates.
+						</p>
+					</div>
+
+					<div class="bg-white rounded-lg shadow-lg p-6">
+						<div class="text-green-600 text-2xl mb-4">✅</div>
+						<h3 class="text-lg font-semibold text-gray-900 mb-2">Quick Resolution</h3>
+						<p class="text-gray-600">
+							Resolve issues faster with organized ticket management.
+						</p>
+					</div>
+
+					<div class="bg-white rounded-lg shadow-lg p-6">
+						<div class="text-purple-600 text-2xl mb-4">⏱️</div>
+						<h3 class="text-lg font-semibold text-gray-900 mb-2">Time Efficient</h3>
+						<p class="text-gray-600">
+							Save time with automated workflows and smart prioritization.
+						</p>
+					</div>
+				</div>
+			</div>
+		</section>
+	</div>
+{% endblock %}
+
+{% block footer %}
+	{% include 'components/footer.html.twig' %}
+{% endblock %}

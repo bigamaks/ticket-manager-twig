@@ -1,0 +1,20 @@
+{
+    "john@example.com": {
+        "id": 1,
+        "name": "John Doe",
+        "email": "john@example.com",
+        "password": "$2y$10$FXVaoMw1xItzaqWA\/WA1MOr.2lgHLYFxe5kvsfdfHrPJOSnbuTwVO"
+    },
+    "chiamakaaniago@gmail.com": {
+        "id": 2,
+        "name": "chiamaka",
+        "email": "chiamakaaniago@gmail.com",
+        "password": "$2y$10$ExjPidNPn83hJWoZHf.HAuN9ZOHFMCoVaVy9JzKyJXZsnUoKNzkIm"
+    },
+    "bigamaks@yahoo.com": {
+        "id": 3,
+        "name": "BigAmaks",
+        "email": "bigamaks@yahoo.com",
+        "password": "$2y$10$iFVZsL079.3LGkR9YDJgwuMC3VVJ2.Q6ye\/gSfcA8\/GQ8gTNjaoJK"
+    }
+}

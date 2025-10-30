@@ -1,0 +1,22 @@
+{
+    "name": "admin/ticket-management-twig",
+    "description": "ticket management app with twig",
+    "type": "project",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Admin\\TicketManagementTwig\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Chiamaka Aniago",
+            "email": "chiamakaaniago@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "twig/twig": "^3.21",
+        "symfony/http-foundation": "^7.3"
+    }
+}

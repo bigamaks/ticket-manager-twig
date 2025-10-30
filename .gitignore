@@ -1,0 +1,53 @@
+# Dependencies
+/vendor/
+/composer.lock
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# Runtime data
+/sessions/
+/tmp/
+/cache/
+
+# Logs
+*.log
+/logs/
+
+# Configuration files (if they contain sensitive data)
+/config/database.php
+/config/app.php
+
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*.sublime-*
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Cache and compiled files
+/var/cache/
+/var/logs/
+/var/sessions/
+
+# Composer files (unless you want to track them)
+composer.phar
+
+# Deployment files
+/build/
+/deploy/
+
+# User uploads (if any)
+/public/uploads/
+/storage/uploads/
