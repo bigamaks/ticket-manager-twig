@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Clear Desk</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="min-h-screen bg-gray-50">
+    <!-- Header -->
+    <header class="border-b border-gray-200 bg-white sticky top-0 z-50 shadow-sm">
+        <nav class="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <a href="/" class="flex items-center gap-3 font-bold text-2xl text-gray-900 hover:opacity-80 transition-opacity">
+                    <div class="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
+                        <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                        </svg>
+                    </div>
+                    <span class="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                        Clear Desk
+                    </span>
+                </a>
+                <div class="flex items-center gap-8">
+                    <a href="/dashboard.html" class="text-base font-medium text-blue-600 font-semibold transition-colors">
+                        Dashboard
+                    </a>
+                    <a href="/tickets.html" class="text-base font-medium text-gray-600 hover:text-gray-900 transition-colors">
+                        Tickets
+                    </a>
+                    <div class="flex items-center gap-4 pl-4 border-l border-gray-200">
+                        <span class="text-sm text-gray-600 hidden sm:block" id="userWelcome">
+                            Welcome, User
+                        </span>
+                        <button onclick="handleLogout()" class="text-base font-medium text-red-600 hover:text-red-700 transition-colors border border-red-200 hover:bg-red-50 rounded-lg px-3 py-2">
+                            Logout
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="flex-1 py-8">
+        <!-- Wavy Background -->
+        <div class="absolute bottom-0 left-0 right-0 transform translate-y-1">
+            <svg class="w-full h-24 text-gray-100" viewBox="0 0 1440 120" preserveAspectRatio="none" fill="currentColor">
+                <path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".25"></path>
+                <path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" opacity=".5"></path>
+                <path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z"></path>
+            </svg>
+        </div>
+
+        <div class="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <!-- Welcome Section -->
+            <div class="text-center mb-12">
+                <h1 class="text-4xl font-bold text-gray-900 mb-4" id="dashboardTitle">Welcome, User 👋</h1>
+                <p class="text-gray-600 text-lg">Manage your tickets and track progress easily.</p>
+            </div>
+
+            <!-- Statistics Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12" id="statsContainer">
+                <!-- Stats will be loaded by JavaScript -->
+            </div>
+
+            <!-- Recent Tickets -->
+            <div class="bg-white rounded-2xl shadow-lg border-0 mb-8" id="recentTicketsSection">
+                <div class="p-6 border-b border-gray-200">
+                    <h2 class="text-2xl font-bold text-gray-900">Recent Tickets</h2>
+                </div>
+                <div class="p-6">
+                    <div class="space-y-4" id="recentTicketsList">
+                        <!-- Tickets will be loaded by JavaScript -->
+                    </div>
+                    <div class="text-center mt-6">
+                        <a href="/tickets.html" class="text-blue-600 hover:text-blue-500 font-medium border border-blue-600 hover:bg-blue-50 px-6 py-2 rounded-lg transition-colors inline-block">
+                            View All Tickets →
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Actions -->
+            <div class="bg-white rounded-2xl shadow-lg border-0 mb-8">
+                <div class="p-6 border-b border-gray-200">
+                    <h2 class="text-2xl font-bold text-gray-900">Quick Actions</h2>
+                </div>
+                <div class="p-6">
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                        <a href="/tickets.html" class="flex-1 max-w-xs bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 font-medium text-center transition-colors">
+                            Manage Tickets
+                        </a>
+                        <a href="/tickets.html" class="flex-1 max-w-xs bg-green-600 text-white px-6 py-3 rounded-lg hover:bg-green-700 font-medium text-center transition-colors flex items-center justify-center gap-2">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
+                            </svg>
+                            Create New Ticket
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Empty State (hidden by default) -->
+            <div class="bg-white rounded-2xl shadow-lg border-0 text-center py-16 hidden" id="emptyState">
+                <div class="p-6">
+                    <div class="w-16 h-16 text-gray-400 mx-auto mb-4 opacity-50">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" class="w-16 h-16">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                        </svg>
+                    </div>
+                    <h2 class="text-xl font-semibold text-gray-900 mb-2">No tickets yet</h2>
+                    <p class="text-gray-600 mb-6 max-w-md mx-auto">
+                        Get started by creating your first support ticket.
+                    </p>
+                    <a href="/tickets.html" class="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 font-medium inline-flex items-center gap-2">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
+                        </svg>
+                        Create Your First Ticket
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-8">
+        <div class="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <p>&copy; 2024 Clear Desk. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Check authentication
+        const user = JSON.parse(localStorage.getItem('user'));
+        if (!user) {
+            window.location.href = '/login.html';
+        }
+
+        // Update user welcome
+        document.getElementById('userWelcome').textContent = `Welcome, ${user.name}`;
+        document.getElementById('dashboardTitle').textContent = `Welcome, ${user.name} 👋`;
+
+        // Load dashboard data
+        function loadDashboard() {
+            const tickets = JSON.parse(localStorage.getItem('tickets') || '[]');
+            
+            // Calculate stats
+            const totalTickets = tickets.length;
+            const openTickets = tickets.filter(t => t.status === 'open').length;
+            const inProgressTickets = tickets.filter(t => t.status === 'in_progress').length;
+            const closedTickets = tickets.filter(t => t.status === 'closed').length;
+
+            // Update stats
+            document.getElementById('statsContainer').innerHTML = `
+                <div class="bg-white rounded-2xl shadow-lg border-0 p-6 text-center hover:shadow-xl transition-shadow">
+                    <div class="text-3xl font-bold text-blue-600 mb-2">${totalTickets}</div>
+                    <div class="text-gray-600 font-medium">Total Tickets</div>
+                </div>
+                <div class="bg-white rounded-2xl shadow-lg border-0 p-6 text-center hover:shadow-xl transition-shadow">
+                    <div class="text-3xl font-bold text-green-600 mb-2">${openTickets}</div>
+                    <div class="text-gray-600 font-medium">Open Tickets</div>
+                </div>
+                <div class="bg-white rounded-2xl shadow-lg border-0 p-6 text-center hover:shadow-xl transition-shadow">
+                    <div class="text-3xl font-bold text-amber-600 mb-2">${inProgressTickets}</div>
+                    <div class="text-gray-600 font-medium">In Progress</div>
+                </div>
+                <div class="bg-white rounded-2xl shadow-lg border-0 p-6 text-center hover:shadow-xl transition-shadow">
+                    <div class="text-3xl font-bold text-gray-600 mb-2">${closedTickets}</div>
+                    <div class="text-gray-600 font-medium">Resolved Tickets</div>
+                </div>
+            `;
+
+            // Update recent tickets
+            const recentTickets = tickets.slice(-5).reverse();
+            if (recentTickets.length > 0) {
+                document.getElementById('recentTicketsList').innerHTML = recentTickets.map(ticket => `
+                    <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors">
+                        <div class="flex-1 min-w-0 mb-3 sm:mb-0">
+                            <h3 class="font-semibold text-gray-900 text-lg mb-1">${ticket.title}</h3>
+                            <p class="text-gray-600 text-sm">${ticket.description || 'No description provided'}</p>
+                            <div class="flex flex-wrap gap-2 mt-2">
+                                <span class="px-3 py-1 rounded-full text-sm font-medium border ${getStatusColor(ticket.status)}">
+                                    ${ticket.status === 'in_progress' ? 'In Progress' : ticket.status.charAt(0).toUpperCase() + ticket.status.slice(1)}
+                                </span>
+                                <span class="px-3 py-1 rounded-full text-sm font-medium bg-blue-100 text-blue-800 border border-blue-200">
+                                    ${ticket.priority.charAt(0).toUpperCase() + ticket.priority.slice(1)}
+                                </span>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-4 sm:ml-4">
+                            <time class="text-sm text-gray-500 whitespace-nowrap">
+                                ${new Date(ticket.createdAt).toLocaleDateString()}
+                            </time>
+                        </div>
+                    </div>
+                `).join('');
+                document.getElementById('recentTicketsSection').classList.remove('hidden');
+                document.getElementById('emptyState').classList.add('hidden');
+            } else {
+                document.getElementById('recentTicketsSection').classList.add('hidden');
+                document.getElementById('emptyState').classList.remove('hidden');
+            }
+        }
+
+        function getStatusColor(status) {
+            switch (status) {
+                case 'open': return 'bg-green-100 text-green-800 border-green-200';
+                case 'in_progress': return 'bg-amber-100 text-amber-800 border-amber-200';
+                case 'closed': return 'bg-gray-100 text-gray-800 border-gray-200';
+                default: return 'bg-gray-100 text-gray-800 border-gray-200';
+            }
+        }
+
+        function handleLogout() {
+            localStorage.removeItem('user');
+            window.location.href = '/login.html';
+        }
+
+        // Initialize dashboard
+        loadDashboard();
+    </script>
+</body>
+</html>
