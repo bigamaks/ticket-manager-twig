@@ -1,11 +1,14 @@
 {
-  "name": "clear-desk-static",
+  "name": "ticket-management-twig",
   "version": "1.0.0",
   "scripts": {
-    "build": "node build.js",
-    "dev": "npx serve dist"
+    "build": "node build.js"
   },
+  "dependencies": {},
   "devDependencies": {
     "fs-extra": "^11.0.0"
+  },
+  "engines": {
+    "node": ">=18"
   }
 }
